@@ -11,5 +11,7 @@ class CreateTransactions < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
+
+    add_index :transactions, :id
   end
 end

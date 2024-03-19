@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_19_184327) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_19_192208) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "transactions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "credit_card_holder_name"
+    t.string "credit_card_number"
+    t.string "description"
+    t.decimal "amount"
+    t.date "credit_card_due_date"
+    t.integer "credit_card_verification_value"
+    t.string "credit_card_holder_id_document"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["id"], name: "index_transactions_on_id"
+  end
 
 end
