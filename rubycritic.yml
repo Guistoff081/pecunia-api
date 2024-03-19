@@ -1,0 +1,6 @@
+minimum_score: 95
+no_browser: true
+paths:
+  - app
+  - lib
+  - config
