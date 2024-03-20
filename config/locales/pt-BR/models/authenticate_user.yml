@@ -1,0 +1,9 @@
+pt-BR:
+  activemodel:
+    errors:
+      models:
+        authenticate_user:
+          attributes:
+            base:
+              failure: "E-mail e/ou senha inválidos"
+

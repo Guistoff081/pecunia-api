@@ -1,0 +1,10 @@
+pt-BR:
+  activemodel:
+    errors:
+      models:
+        authorize_request:
+          attributes:
+            base:
+              failure: "Falha ao decodificar o Token de acesso"
+              expired: "Token de acesso expirado. Por favor, fazer login novamente"
+              invalid: "Token de acesso inválido. Por favor, fazer login novamente"

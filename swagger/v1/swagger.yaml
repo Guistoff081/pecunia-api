@@ -1,0 +1,141 @@
+---
+openapi: 3.0.1
+info:
+  title: Pecunia Pay API V1
+  version: v1
+paths:
+  "/api/v1/login":
+    post:
+      summary: Login
+      tags:
+      - Session
+      parameters: []
+      responses:
+        '200':
+          description: sign in
+        '401':
+          description: unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - email
+              - password
+            examples:
+              login_request_body_example:
+                summary: A Login Request body with default user and password
+                value:
+                  user:
+                    email: demo@pecuniapay.com.br
+                    password: Teste@1234
+  "/api/v1/logout":
+    delete:
+      summary: Logout
+      tags:
+      - Session
+      responses:
+        '204':
+          description: No Content
+        '403':
+          description: Unprocessable Entity
+  "/api/v1/transactions":
+    get:
+      summary: list transactions
+      tags:
+      - Transaction
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: successful
+        '401':
+          description: unauthorized
+    post:
+      summary: create transaction
+      tags:
+      - Transaction
+      parameters: []
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: successful
+        '422':
+          description: unprocessable entity
+        '401':
+          description: unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                amount:
+                  type: number
+                  format: double
+                credit_card_holder_name:
+                  type: string
+                credit_card_holder_id_document:
+                  type: string
+                credit_card_due_date:
+                  type: string
+                credit_card_number:
+                  type: string
+                credit_card_verification_value:
+                  type: integer
+              required:
+              - description
+              - amount
+              - credit_card_holder_name
+              - credit_card_holder_id_document
+              - credit_card_due_date
+              - credit_card_number
+              - credit_card_verification_value
+  "/api/v1/transactions/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show transaction
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update transaction
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update transaction
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete transaction
+      responses:
+        '200':
+          description: successful
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

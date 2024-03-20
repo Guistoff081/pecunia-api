@@ -103,21 +103,9 @@ GEM
       reline (>= 0.3.8)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
-    devise (4.9.3)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
-      responders
-      warden (~> 1.2.3)
-    devise-jwt (0.11.0)
-      devise (~> 4.0)
-      warden-jwt_auth (~> 0.8)
     diff-lcs (1.5.1)
     docile (1.4.0)
     drb (2.2.1)
-    dry-auto_inject (1.0.1)
-      dry-core (~> 1.0)
-      zeitwerk (~> 2.6)
     dry-configurable (1.1.0)
       dry-core (~> 1.0, < 2)
       zeitwerk (~> 2.6)
@@ -218,7 +206,6 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.3-x86_64-linux)
       racc (~> 1.4)
-    orm_adapter (0.5.0)
     parallel (1.24.0)
     parser (3.3.0.5)
       ast (~> 2.4.1)
@@ -282,9 +269,6 @@ GEM
     regexp_parser (2.9.0)
     reline (0.4.3)
       io-console (~> 0.5)
-    responders (3.1.1)
-      actionpack (>= 5.2)
-      railties (>= 5.2)
     rexml (3.2.6)
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
@@ -380,13 +364,6 @@ GEM
       axiom-types (~> 0.1)
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
-    warden (1.2.9)
-      rack (>= 2.0.9)
-    warden-jwt_auth (0.8.0)
-      dry-auto_inject (>= 0.8, < 2)
-      dry-configurable (>= 0.13, < 2)
-      jwt (~> 2.1)
-      warden (~> 1.2)
     webrick (1.8.1)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -403,13 +380,13 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  bcrypt (~> 3.1.7)
   bootsnap
   debug
-  devise
-  devise-jwt
   factory_bot_rails (~> 6.4, >= 6.4.3)
   faker (~> 3.2, >= 3.2.3)
   jbuilder
+  jwt
   pg (~> 1.1)
   puma (>= 5.0)
   rack-cors

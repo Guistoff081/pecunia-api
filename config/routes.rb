@@ -1,23 +1,23 @@
 Rails.application.routes.draw do
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      mount Rswag::Ui::Engine => '/docs'
+      mount Rswag::Api::Engine => '/docs'
+      # detatched routes
+      post '/login', to: 'sessions#create'
 
-  devise_for :users, defaults: { format: :json }, path: '', path_names: {
-    sign_in: 'login',
-    sign_out: 'logout',
-    registration: 'sign_up'
- }, controllers: {
-    sessions: 'users/sessions',
-    registrations: 'users/registrations'
- }
-
-  mount Rswag::Ui::Engine => '/api-docs'
-  mount Rswag::Api::Engine => '/api-docs'
+      # resourceful routes
+      resources :transactions
+      resources :users
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  resources :transactions
+
   # Defines the root path route ("/")
   # root "posts#index"
 end
