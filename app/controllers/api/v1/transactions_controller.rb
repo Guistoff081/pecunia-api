@@ -9,7 +9,7 @@ module Api
       # GET /transactions
       # GET /transactions.json
       def index
-        @transactions = Transaction.all
+        @transactions = current_user.transactions
       end
 
       # GET /transactions/1
@@ -49,13 +49,13 @@ module Api
 
       # Use callbacks to share common setup or constraints between actions.
       def set_transaction
-        @transaction = Transaction.find(params[:id])
+        @transaction = current_user.transactions.find(params[:id])
       end
 
       # Only allow a list of trusted parameters through.
       def transaction_params
         params.require(:transaction).permit(:credit_card_holder_name, :credit_card_number, :description, :amount, :credit_card_due_date, :credit_card_verification_value,
-                                            :credit_card_holder_id_document)
+                                            :credit_card_holder_id_document, :user_id)
       end
     end
   end
