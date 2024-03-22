@@ -4,5 +4,5 @@ user = User.find_or_create_by(email: 'demo@pecuniapay.com.br', name: 'Demo User'
 end
 
 10.times do
-  FactoryBot.create(:transaction)
+  FactoryBot.create(:transaction, user: user)
 end

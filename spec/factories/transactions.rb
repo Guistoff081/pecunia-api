@@ -7,5 +7,6 @@ FactoryBot.define do
     credit_card_due_date { Faker::Business.credit_card_expiry_date }
     credit_card_verification_value { Faker::Number.number(digits: 3) }
     credit_card_holder_id_document { Faker::IDNumber.brazilian_citizen_number }
+    user {}
   end
 end
